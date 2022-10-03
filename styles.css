@@ -1,0 +1,17 @@
+body{
+    text-align: center;
+    background-color: black;
+}
+
+.game-title{
+    color: greenyellow;
+    font-size: 3rem;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.container{
+ display: block;
+ margin: auto;
+}
+
+
