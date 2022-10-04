@@ -25,6 +25,16 @@ audio.play();
 nextSequence();
 
 
+var userClickedPattern=[]; //3. At the top of the game.js file, create a new empty array with the name userClickedPattern.
+
+
+$("btn").click ( function() {
+    var userChosenColour=$(this).attr("#btn");  //2. Inside the handler, create a new variable called userChosenColour to store the id of the button that got clicked.
+    
+        userClickedPattern.push(userChosenColour);  
+        //4. Add the contents of the variable userChosenColour created in step 2 to the end of this new userClickedPattern
+    console.log(userClickedPattern);
+});
 
 
 
