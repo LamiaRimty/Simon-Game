@@ -12,11 +12,9 @@ var level=0;  //create a new varible called level starts at 0
 $(document).keypress (function() {
  
  if(!started){
-  $("#game-title").text("Lavel"+level);
-  }
-  level++;
   nextSequence();
-
+  started=true;
+ }
 });
 
 $(".btn").click ( function() {
@@ -28,6 +26,9 @@ $(".btn").click ( function() {
 
 
 function nextSequence(){  //1.inside the top of the index.js file ,create a new function called nextSequence()
+ 
+  level++;     //4. Inside nextSequence(), increase the level by 1 every time nextSequence() is called.
+  $("#game-title").text("Lavel"+level);   //5. Inside nextSequence(), update the h1 with this change in the value of level.
 
   var randomNumber=Math.floor(Math.random()*4); //2.inside the func generate a random number between 0-3,store it in variable called randomnumber
    var randomChosenColour=buttonColours[randomNumber];  // 6.Add the new randomChosenColour generated in step 4 to the end of the gamePattern.
