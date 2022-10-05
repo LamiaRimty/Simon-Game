@@ -41,8 +41,8 @@ function nextSequence(){  //1.inside the top of the index.js file ,create a new 
 }
      
 function playSound(name){         //2. Create a new function called playSound() that takes a single input parameter called name.
-    var audio= new Audio("sounds/"+ name + ".mp3");   //3. Take the code we used to play sound in the nextSequence() function and add it to playSound().
-    audio.play();
+  var audio= new Audio("sounds/"+ name + ".mp3");   //3. Take the code we used to play sound in the nextSequence() function and add it to playSound().
+  audio.play();
 }
 
 function animatePress(currentColour){   //1. Create a new function called animatePress(), it should take a single input parameter called currentColour.
@@ -54,10 +54,3 @@ function animatePress(currentColour){   //1. Create a new function called animat
 
 
 
-
-// //Detecting keyboard press
-// document.addEventListener("keypress",function(event){
-//   makeSound(event.key);
-//   buttonAnimation(event.key);
-  
-//  });
