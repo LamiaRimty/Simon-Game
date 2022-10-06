@@ -12,6 +12,7 @@ var level=0;  //create a new varible called level starts at 0
 $(document).keypress (function() {
  
  if(!started){
+  $("#game-title").text("Lavel"+level);
   nextSequence();
   started=true;
  }
@@ -22,23 +23,38 @@ $(".btn").click ( function() {
      userClickedPattern.push(userChosenColour);   //4. Add the contents of the variable userChosenColour created in step 2 to the end of this new userClickedPattern
       playSound(userChosenColour);
       animatePress(userChosenColour);
-     checkAnswer(userClickedPattern);  //8.2 Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
+     checkAnswer(userClickedPattern.length-1);  //8.2 Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
 });
 
 //8.1. Create a new function called checkAnswer(), it should take one input with the name currentLevel
 function checkAnswer(currentLevel){
-  if(userClickedPattern[currentLevel]===gamePattern[currentLevel]){
+  if(gamePattern[currentLevel]===userClickedPattern[currentLevel]){
     console.log("Success!");
-  }
   
-  if(userClickedPattern.length===gamePattern.length){      //8.4. If the user got the most recent answer right in step 3, then check that they have finished their sequence with another if statement.
-    setTimeout(function(){
-      nextSequence();                //8.5. Call nextSequence() after a 1000 millisecond delay.
-    },1000);
+    if(userClickedPattern.length===gamePattern.length){      //8.4. If the user got the most recent answer right in step 3, then check that they have finished their sequence with another if statement.
+      setTimeout(function(){
+        nextSequence();                //8.5. Call nextSequence() after a 1000 millisecond delay.
+      },1000);
+    }
+  
   }
   
   else{
     console.log("Wrong!");
+    playSound("wrong"); //9.1 in the sound folder there is a sound called wrong,this play,if user got wrong 
+    
+    $("body").addClass("gameOver"); //9.2 add the gameOver class of css,in the body of the weebsite when user gets wrong answer thern remove it after 200ms
+
+   setTimeout(function(){
+
+    $("body").removeClass("gameOver");
+    },200);
+
+    $("#game-title").text("Game Over, Press any key to Restart");  //9. //3. Change the h1 title to say "Game Over, Press Any Key to Restart" if the user got the answer wrong.
+  
+    startOver(); //10.2. Call startOver() if the user gets the sequence wrong.
+
+
   }
 }
 
@@ -64,6 +80,9 @@ function nextSequence(){  //1.inside the top of the index.js file ,create a new 
 function playSound(name){         //2. Create a new function called playSound() that takes a single input parameter called name.
   var audio= new Audio("sounds/"+ name + ".mp3");   //3. Take the code we used to play sound in the nextSequence() function and add it to playSound().
   audio.play();
+
+
+  
 }
 
 function animatePress(currentColour){   //1. Create a new function called animatePress(), it should take a single input parameter called currentColour.
@@ -73,6 +92,11 @@ function animatePress(currentColour){   //1. Create a new function called animat
    },100);
 }
 
+function startOver(){   //10.3. create a fun Inside this function, you'll need to reset the values of level, gamePattern and started variables.
+  level=0;
+  gamePattern=[];
+  started=false;
+}
 
   
 

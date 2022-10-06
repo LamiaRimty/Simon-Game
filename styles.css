@@ -3,7 +3,7 @@ body{
     background-color: #02264d;
 }
 
-.game-title{
+#game-title{
     color: greenyellow;
     font-size: 4rem;
     font-family: 'Press Start 2P', cursive;
@@ -49,4 +49,8 @@ footer{
     color: aliceblue;
 }
 
+.gameOver{
+    background-color: red;
+    opacity: 0.8;
+}
   
