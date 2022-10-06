@@ -22,11 +22,31 @@ $(".btn").click ( function() {
      userClickedPattern.push(userChosenColour);   //4. Add the contents of the variable userChosenColour created in step 2 to the end of this new userClickedPattern
       playSound(userChosenColour);
       animatePress(userChosenColour);
+     checkAnswer(userClickedPattern);  //8.2 Call checkAnswer() after a user has clicked and chosen their answer, passing in the index of the last answer in the user's sequence.
 });
+
+//8.1. Create a new function called checkAnswer(), it should take one input with the name currentLevel
+function checkAnswer(currentLevel){
+  if(userClickedPattern[currentLevel]===gamePattern[currentLevel]){
+    console.log("Success!");
+  }
+  
+  if(userClickedPattern.length===gamePattern.length){      //8.4. If the user got the most recent answer right in step 3, then check that they have finished their sequence with another if statement.
+    setTimeout(function(){
+      nextSequence();                //8.5. Call nextSequence() after a 1000 millisecond delay.
+    },1000);
+  }
+  
+  else{
+    console.log("Wrong!");
+  }
+}
 
 
 function nextSequence(){  //1.inside the top of the index.js file ,create a new function called nextSequence()
  
+  userClickedPattern=[]; //8.6. Once nextSequence() is triggered, reset the userClickedPattern to an empty array ready for the next level.
+
   level++;     //4. Inside nextSequence(), increase the level by 1 every time nextSequence() is called.
   $("#game-title").text("Lavel"+level);   //5. Inside nextSequence(), update the h1 with this change in the value of level.
 
@@ -37,7 +57,8 @@ function nextSequence(){  //1.inside the top of the index.js file ,create a new 
    $("#"+randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);  //1. Use jQuery to select the button with the same id as the randomChosenColour                                                            
     playSound(randomChosenColour);  //2. Use Google/Stackoverflow to figure out how you can use jQuery to animate a flash to the button selected in step 1.
                                     //4. Refactor the code in playSound() so that it will work for both playing sound in nextSequence() and when the user clicks a button.
-                           
+    
+                          
 }
      
 function playSound(name){         //2. Create a new function called playSound() that takes a single input parameter called name.
@@ -52,5 +73,7 @@ function animatePress(currentColour){   //1. Create a new function called animat
    },100);
 }
 
+
+  
 
 
